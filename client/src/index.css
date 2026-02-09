@@ -1,0 +1,329 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Geist";
+  src: url("https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/Geist-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/Geist-Medium.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/Geist-SemiBold.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("https://cdn.jsdelivr.net/npm/geist@1.2.0/dist/fonts/geist-sans/Geist-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Priority colors */
+  --color-priority-urgent: var(--priority-urgent);
+  --color-priority-high: var(--priority-high);
+  --color-priority-medium: var(--priority-medium);
+  --color-priority-low: var(--priority-low);
+  
+  /* Category colors */
+  --color-category-work: var(--category-work);
+  --color-category-personal: var(--category-personal);
+  --color-category-health: var(--category-health);
+  --color-category-finance: var(--category-finance);
+  --color-category-learning: var(--category-learning);
+  --color-category-social: var(--category-social);
+  --color-category-other: var(--category-other);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.13 0.005 285);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.17 0.008 285);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.17 0.008 285);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.72 0.18 280);
+  --primary-foreground: oklch(0.13 0 0);
+  --secondary: oklch(0.22 0.01 285);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.20 0.005 285);
+  --muted-foreground: oklch(0.65 0.02 285);
+  --accent: oklch(0.22 0.02 280);
+  --accent-foreground: oklch(0.95 0 0);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.95 0 0);
+  --border: oklch(0.26 0.01 285);
+  --input: oklch(0.22 0.01 285);
+  --ring: oklch(0.72 0.18 280);
+  --chart-1: oklch(0.72 0.18 280);
+  --chart-2: oklch(0.75 0.15 160);
+  --chart-3: oklch(0.70 0.15 45);
+  --chart-4: oklch(0.65 0.15 330);
+  --chart-5: oklch(0.70 0.12 200);
+  --sidebar: oklch(0.13 0.005 285);
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-primary: oklch(0.72 0.18 280);
+  --sidebar-primary-foreground: oklch(0.13 0 0);
+  --sidebar-accent: oklch(0.20 0.02 280);
+  --sidebar-accent-foreground: oklch(0.95 0 0);
+  --sidebar-border: oklch(0.26 0.01 285);
+  --sidebar-ring: oklch(0.72 0.18 280);
+  
+  /* Priority colors */
+  --priority-urgent: oklch(0.65 0.22 25);
+  --priority-high: oklch(0.72 0.18 45);
+  --priority-medium: oklch(0.78 0.15 85);
+  --priority-low: oklch(0.72 0.12 160);
+  
+  /* Category colors */
+  --category-work: oklch(0.70 0.15 250);
+  --category-personal: oklch(0.72 0.18 280);
+  --category-health: oklch(0.72 0.15 150);
+  --category-finance: oklch(0.72 0.15 85);
+  --category-learning: oklch(0.70 0.15 200);
+  --category-social: oklch(0.70 0.15 330);
+  --category-other: oklch(0.60 0.05 285);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/30;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1400px;
+    }
+  }
+}
+
+@layer utilities {
+  /* Glass effect */
+  .glass {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, oklch(0.72 0.18 280), oklch(0.70 0.15 330), oklch(0.75 0.15 160));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtle glow */
+  .glow {
+    box-shadow: 0 0 40px -10px oklch(0.72 0.18 280 / 0.3);
+  }
+
+  /* Priority badge styles */
+  .priority-urgent {
+    background-color: oklch(0.65 0.22 25 / 0.15);
+    color: oklch(0.75 0.20 25);
+    border-color: oklch(0.65 0.22 25 / 0.3);
+  }
+  .priority-high {
+    background-color: oklch(0.72 0.18 45 / 0.15);
+    color: oklch(0.80 0.16 45);
+    border-color: oklch(0.72 0.18 45 / 0.3);
+  }
+  .priority-medium {
+    background-color: oklch(0.78 0.15 85 / 0.15);
+    color: oklch(0.85 0.13 85);
+    border-color: oklch(0.78 0.15 85 / 0.3);
+  }
+  .priority-low {
+    background-color: oklch(0.72 0.12 160 / 0.15);
+    color: oklch(0.80 0.10 160);
+    border-color: oklch(0.72 0.12 160 / 0.3);
+  }
+
+  /* Category badge styles */
+  .category-work {
+    background-color: oklch(0.70 0.15 250 / 0.15);
+    color: oklch(0.78 0.13 250);
+    border-color: oklch(0.70 0.15 250 / 0.3);
+  }
+  .category-personal {
+    background-color: oklch(0.72 0.18 280 / 0.15);
+    color: oklch(0.80 0.16 280);
+    border-color: oklch(0.72 0.18 280 / 0.3);
+  }
+  .category-health {
+    background-color: oklch(0.72 0.15 150 / 0.15);
+    color: oklch(0.80 0.13 150);
+    border-color: oklch(0.72 0.15 150 / 0.3);
+  }
+  .category-finance {
+    background-color: oklch(0.72 0.15 85 / 0.15);
+    color: oklch(0.80 0.13 85);
+    border-color: oklch(0.72 0.15 85 / 0.3);
+  }
+  .category-learning {
+    background-color: oklch(0.70 0.15 200 / 0.15);
+    color: oklch(0.78 0.13 200);
+    border-color: oklch(0.70 0.15 200 / 0.3);
+  }
+  .category-social {
+    background-color: oklch(0.70 0.15 330 / 0.15);
+    color: oklch(0.78 0.13 330);
+    border-color: oklch(0.70 0.15 330 / 0.3);
+  }
+  .category-other {
+    background-color: oklch(0.60 0.05 285 / 0.15);
+    color: oklch(0.70 0.03 285);
+    border-color: oklch(0.60 0.05 285 / 0.3);
+  }
+}
+
+/* Animation keyframes */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px -5px oklch(0.72 0.18 280 / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px -5px oklch(0.72 0.18 280 / 0.6);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.72 0.18 280 / 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
