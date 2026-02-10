@@ -1,6 +1,10 @@
 import type { CreateExpressContextOptions } from "@trpc/server/adapters/express";
-import type { User } from "../../drizzle/schema";
+import { InferSelectModel } from "drizzle-orm";
+import { users } from "../db/schema";
 import { sdk } from "./sdk";
+
+// 👇 Tipo correto baseado na tabela users
+export type User = InferSelectModel<typeof users>;
 
 export type TrpcContext = {
   req: CreateExpressContextOptions["req"];
@@ -11,12 +15,29 @@ export type TrpcContext = {
 export async function createContext(
   opts: CreateExpressContextOptions
 ): Promise<TrpcContext> {
+
+  // ✅ LOGIN FAKE APENAS EM DESENVOLVIMENTO
+  if (process.env.NODE_ENV === "development") {
+    return {
+      req: opts.req,
+      res: opts.res,
+      user: {
+        id: 1,
+        openId: "dev-open-id",
+        name: "Pedro Dev",
+        email: "dev@local.com",
+        passwordHash: null,
+        createdAt: new Date().toISOString(),
+      },
+    };
+  }
+
+  // 🔐 PRODUÇÃO (OAuth real)
   let user: User | null = null;
 
   try {
     user = await sdk.authenticateRequest(opts.req);
-  } catch (error) {
-    // Authentication is optional for public procedures.
+  } catch {
     user = null;
   }
 
